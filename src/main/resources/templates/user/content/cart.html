@@ -45,17 +45,17 @@
                                     <td class="product-price"
                                         th:text="${item.getAgriculturalProduce().getPrice() +' Vnđ'}"></td>
                                     <td class="product-quantity"><input type="number" placeholder="0"
-                                            th:value="${item.getQuantityOrder()}" onchange="myFunction(this.value)">
+                                            th:value="${item.getQuantityOrder()}"  th:onchange=" changeQuantity + ${item.getAgriculturalProduce().getId()} +('(this.value)')">
                                     </td>
                                     <td class="product-total"
                                         th:text="${item.getQuantityOrder() * item.getAgriculturalProduce().getPrice()+' Vnđ'} ">
                                     </td>
                                     <script>
-                                        function myFunction(quantity) {
+                                        function changeQuantity[[${item.getAgriculturalProduce().getId()}]](quantity) {
                                             var id =[[${item.getAgriculturalProduce().getId()}]];
                                             console.log(id);
                                             console.log(quantity);
-                                            window.location.assign("http://localhost:8080/Shop/UpdateCart/" + id + "?quantity=" + quantity);
+                                            window.location.assign("http://localhost:8080/Shop/UpdateCart/" + [[${item.getAgriculturalProduce().getId()}]] + "?quantity=" + quantity);
                                         }
                                     </script>
                                 </tr>
