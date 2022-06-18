@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <div th:fragment="content" class="card-body container bg-white">
+        <h2 class="card-title bg-info text-white text-center p-3">Sửa Nông Sản</h2>
+
+        <form th:action="${BASEURL + UDPATE}" class="row" method="post" enctype="multipart/form-data">
+            <input name="id" type="hidden" class="form-control" id="exampleInputName1" th:value="${agricultural.id}">
+            <div class="form-group col-6">
+                <label for="name">Tên:</label>
+                <input name="name" type="text" class="form-control" id="name" placeholder="Name" th:value="${agricultural.name}">
+            </div>
+            <div class="form-group col-6">
+                <label>File upload:</label>
+                <div class="input-group mb-3">
+                    <div class="custom-file">
+                        <input name="image" type="file" class="custom-file-input" id="image" aria-describedby="inputGroupFileAddon01">
+                        <label class="custom-file-label" for="image">Choose file</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-6">
+                <label for="weight">Trọng Lượng:</label>
+                <input name="weight" type="text" class="form-control" id="weight" required pattern="(\d*\.?\d+)" title="sai định dạng" placeholder="Weight" th:value="${agricultural.weight}">
+             </div>
+            <div class="form-group col-6">
+                <label for="supplier">Xuất Xứ:</label>
+                <select name="supplier" class="form-control" id="supplier">
+                    <option th:each="supplier: ${Supplier}"
+                            th:text="${supplier.name}" th:value="${supplier.id}"
+                            th:selected="${supplier.name.equals(agricultural.getSupplier().getName())}"
+                            ></option>
+                </select>
+            </div>
+            <div class="form-group col-6">
+                <label for="quantity">Số Lượng:</label>
+                <input name="quantity" type="number" class="form-control" id="quantity " th:value="${agricultural.quantity}"
+                       placeholder="Quantity" min="1">
+            </div>
+            <div class="form-group col-6">
+                <label for="price">Giá:</label>
+                <input name="price"  type='number' pattern='[0-9]+(\\.[0-9][0-9]?)?' class="form-control" id="price " th:value="${agricultural.price}"
+                       placeholder="Price">
+            </div>
+            <div class="form-group col-6">
+                <label for="type">Loại:</label>
+                <select name="type" class="form-control" id="type">
+                    <option th:each="type: ${T(assignment.assignment_java5.model.typeEnum.TypeAgriculturalProduce).values()}"
+                            th:text="${type}" th:value="${type}"
+                            th:selected="${type.compareTo(agricultural.type)} == 0"
+                            ></option>
+                </select>
+            </div>
+            <div class="form-group col-6">
+                <label for="exampleSelectStatus">Trạng thái:</label>
+                <select name="status" class="form-control" id="exampleSelectStatus">
+                    <option th:each="status: ${T(assignment.assignment_java5.model.typeEnum.StatusAgriculturalProduce).values()}"
+                            th:text="${status.value}" th:value="${status}"
+                            th:selected="${status.compareTo(agricultural.status)} == 0"></option>
+                </select>
+            </div>
+
+            <div class="form-group col-12">
+                <label for="exampleInputNutrition">Giá Trị Dinh Dưỡng</label>
+                <textarea  name="nutrition" type="text" class="form-control" id="exampleInputNutrition" placeholder="Nutrition" th:text="${agricultural.nutrition}"></textarea >
+            </div>
+
+            <button class="btn btn-primary mr-2" type="submit">Save</button>
+            <button type="reset" class="btn btn-light">Reset</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

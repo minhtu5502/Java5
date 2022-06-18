@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div th:fragment="page">
+        <div>
+            <div th:replace="/user/content/header :: header"></div>
+        </div>
+        <div class="product-section mb-150">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="product-filters">
+                            <ul>
+                                <li class="active" data-filter="*">Tất cả</li>
+                                <li data-filter=".strawberry">Rau</li>
+                                <li data-filter=".berry">Củ</li>
+                                <li data-filter=".lemon">Quả</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row product-lists">
+                    <div class="col-lg-4 col-md-6 text-center " th:each="item: ${listAgriculture}">
+                        <div class="single-product-item">
+                            <div class="product-image">
+                                <a th:href="@{'/Shop'+${Item + item.id}}"><img th:src="${'data:image/jpeg;base64,'+ item.image}"
+                                        style="height: 200px;" alt=""></a>
+                            </div>
+                            <h3 th:text="${item.name}"></h3>
+                            <p class=""><span th:text="${item.weight}"></span><span>Kg </span></p>
+                            <p class="product-price " th:text="${item.price}+'$'"></p>
+                            <a th:href="@{'/Shop/AddToCart/'+${item.id}}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="pagination-wrap">
+                            <ul class="pagination justify-content-center mb-5" th:if="${page.getTotalPages() > 0} ">
+                                <li class="">
+                                    <a class="page-link" th:if="${currentPage > 1}"
+                                        th:href="@{ ${BASEURL + PAGE} + ${currentPage - 1}}">Previous
+                                    </a>
+                                </li>
+
+                                <span th:each="i: ${#numbers.sequence(1, page.getTotalPages())}">
+                                    <li class="">
+                                        <a class="page-link" th:if="${currentPage != i}" th:href="@{ ${BASEURL + PAGE} + ${i}}"
+                                            th:text="${i}"></a>
+                                    </li>
+
+                                    <li class="" th:unless="${currentPage != i}"><a
+                                            class="page-link active">[[${i}]]</a>
+                                    </li>
+                                </span>
+
+                                <li class="">
+                                    <a class="page-link" th:if="${currentPage < page.getTotalPages()}"
+                                        th:href="@{ ${BASEURL + PAGE} + ${currentPage + 1}}">Next</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalSignIn" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalToggleLabel">Modal 1</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-outline-primary" data-bs-target="#modalSign" data-bs-toggle="modal">Đăng kí</button>
+              <button class="btn btn-outline-danger" data-bs-dismiss="modal">Đóng</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Hide this modal and show the first with the button below.
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Open first modal</a>
+</body>
+
+</html>

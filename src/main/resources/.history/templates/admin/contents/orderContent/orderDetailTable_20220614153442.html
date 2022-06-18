@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+<!--      layout:decorate="~{/admin/layout/layoutAdmin}">-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div th:fragment="content">
+        <a href="/Confirm">Quay Lại</a>
+        <hr>
+        <form th:action="${BASEURL}">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Chi Tiết Đơn Hàng</h4>
+                        <div class="mt-5 mb-3 row">
+                            <div class=" d-flex justify-content-end">
+                               
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped text-center">
+                                <thead>
+                                    <tr>
+                                        <th class="product-name">Tên </th>
+                                        <th class="product-price">Ảnh</th>
+                                        <th class="product-total">Gia Mua</th>
+                                        <th class="product-total">Số Lượng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="item: ${OrderDetail}">
+ 
+                                        <td class="product-quantity" th:text="${item.getAgriculturalProduce().getName()}"></td>
+                                        <td class="product-quantity" ><img th:src="${'data:image/jpeg;base64,'+ item.getAgriculturalProduce().getImage()}" width="100px" alt=""></td>
+                                        <td class="product-total" th:text="${item.price + '$'}"></td>
+                                        <td class="product-total" th:text="${item.quantity}"></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+        </form>
+        <!-- /.container-fluid -->
+    </div>
+</body>
+
+</html>

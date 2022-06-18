@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <div class="top-header-area bg-dark" id="sticker" th:fragment="nav">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 text-center">
+                    <div class="main-menu-wrap">
+                        <!-- logo -->
+                        <div class="site-logo">
+                            <a href="index.html">
+                                <img src="assets/img/logo.png" alt="">
+                            </a>
+                        </div>
+                        <!-- logo -->
+
+                        <!-- menu start -->
+                        <nav class="main-menu">
+                            <ul>
+                                <li class="current-list-item"><a href="Home">Home</a>
+
+                                </li>
+                                <li><a href="#">About</a></li>
+                                <!-- <li><a href="#">Pages</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="404.html">404 page</a></li>
+                                            <li><a href="about.html">About</a></li>
+                                            <li><a href="cart.html">Cart</a></li>
+                                            <li><a href="checkout.html">Check Out</a></li>
+                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="news.html">News</a></li>
+                                            <li><a href="shop.html">Shop</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="news.html">News</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="news.html">News</a></li>
+                                            <li><a href="single-news.html">Single News</a></li>
+                                        </ul>
+                                    </li> -->
+                                <!-- <li><a href="#">Contact</a></li> -->
+                                <!-- <li><a href="shop.html">Shop</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="shop.html">Shop</a></li>
+                                            <li><a href="checkout.html">Check Out</a></li>
+                                            <li><a href="single-product.html">Single Product</a></li>
+                                            <li><a href="cart.html">Cart</a></li>
+                                        </ul>
+                                    </li> -->
+                                <li class="offset-7">
+                                    <div class="header-icons">
+                                        <a class="shopping-cart" href="Cart"><i class="fas fa-shopping-cart"></i></a>
+                                    </div>
+                                </li>
+                                <li><p th:if="${au}">SignIn/SignUp</p>
+                                    <ul class="sub-menu">
+                                        <li><a class="btn" href="Login"
+                                                role="button">SignIn</a></li>
+                                        <li><a href="SignUp" class="btn"
+                                                role="button">SignUp</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <div class="header-icons">
+                                        <form th:action="${'/Shop/Home'}">
+                                            <input type="text" placeholder="Keywords" name="key" id="key">
+                                            <a class="mobile-hide search-bar-icon btn" href="#"><i
+                                                    class="fas fa-search"></i></a>
+                                        </form>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </nav>
+                        <!-- <div class="modal fade" id="modalSignIn" aria-hidden="true"
+                            aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalToggleLabel">Modal 1</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <form th:action="${BASEURL + UPDATE}">
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Tài Khoản :
+                                                </label>
+                                                <input type="text" class="form-control" name="username" id="username"
+                                                    placeholder="UserName">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Mật Khẩu :
+                                                </label>
+                                                <input type="password" class="form-control" name="password"
+                                                    id="password" placeholder="Password">
+                                            </div>
+                                            <a data-bs-toggle="modal" href="#modalSignUp" role="button">Chưa có tài
+                                                khoản? Đăng kí ngay!</a>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-success">Đăng Nhập</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="modalSignUp" aria-hidden="true"
+                            aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalToggleLabel2">Modal 2</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <form th:action="${BASEURL + UPDATE}">
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Tài Khoản :
+                                                </label>
+                                                <input type="text" class="form-control" name="username" id="username"
+                                                    placeholder="UserName">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputName1">Mật Khẩu :
+                                                </label>
+                                                <input type="password" class="form-control" name="password"
+                                                    id="password" placeholder="Password">
+                                            </div>
+                                            <hr>
+                                            <a data-bs-toggle="modal" href="#modalSignIn" role="button">Đã có tài khoản?
+                                                Đăng nhập ngay!</a>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-success">Đăng kí</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

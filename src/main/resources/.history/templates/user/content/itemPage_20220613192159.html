@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout" lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <main class="mt-5 pt-4" th:fragment="page">
+    <div class="single-product mt-150 mb-150">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="single-product-img">
+              <img th:src="${'data:image/jpeg;base64,'+ item.image}" alt="">
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="single-product-content">
+              <h3 th:text="${item.name}"></h3>
+              <p>  <span class="" th:text="${item.weight}"></span> <span>Kg</span></p>
+              <p class=""><p class="product-price " th:text="${item.price}+'$'">></p></p>
+              <p class="single-product-pricing"><span>Số lượng: </span> <span class="" th:text="${item.quantity}"></span> </p>
+              <hr>
+              <p>Giá trị dinh dưỡng:</p>
+              <p th:text="${item.nutrition}"></p>
+              <div class="single-product-form">
+                <form th:action="">
+                  <input type="number" placeholder="0" name="quantity" id="quantity" required>
+                  <a th:href="@{'/Shop/AddToCart/'+${item.id}}" class="cart-btn btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                </form>
+                <p><strong>Loại: </strong > <span th:text="${item.type}"></span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="more-products mb-150">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2 text-center">
+            <div class="section-title">	
+              <h3><span class="orange-text">Related</span> Products</h3>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-6 text-center">
+            <div class="single-product-item">
+              <div class="product-image">
+                <a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+              </div>
+              <h3>Strawberry</h3>
+              <p class="product-price"><span>Per Kg</span> 85$ </p>
+              <a th:href="@{'/Shop/AgriculturalProduce/'+${item.id}}"  class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!--Main layout-->
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="cart-table-wrap" th:fragment="page">
+        <table class="cart-table">
+            <thead class="cart-table-head">
+                <tr class="table-head-row">
+                    <th class="product-name">Mã</th>
+                    <th class="product-price">Ngày Mua</th>
+                    <th class="product-quantity">Tổng Tiền</th>
+                    <th class="product-total">Trạng Thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-body-row" th:each="item: ${Order}" >
+                    <td class="product-quantity" th:text="${item.id}"></td>
+                    <td class="product-quantity" th:text="${item.created}"></td>
+                    <td class="product-total" th:text="${item.totalPrice}"></td>
+                    <td class="product-total" th:text="${item.statusOrder}"></td>
+                    <td class="product-price" ><button class="btn boxed-btn cart-buttons" data-toggle="modal"
+                         th:attr="data-target='#modalEdit'+${item.id}">Chi tiết</button>  
+                        <div th:if="${item.statusOrder==StatusDone}"><hr>
+                            <button class="boxed-btn cart-buttons" >Đã Nhận Được Hàng</button></div></td>
+                        
+                        <div class="modal-dialog modal-dialog-centered" th:attr="id='modalEdit'+${item.id}" tabindex="-1"
+                        aria-labelledby="modalEdit" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form th:action="${BASEURL+UPDATE}" method="post">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalEdit">Chi tiết Đơn Hàng
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form >
+                                        <table class="cart-table">
+                                            <thead class="cart-table-head">
+                                                <tr class="table-head-row">
+                                                    <th class="product-name">Tên</th>
+                                                    <th class="product-price">Ảnh</th>
+                                                    <th class="product-quantity">Giá Mua</th>
+                                                    <th class="product-total">Số Lượng</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="table-body-row" th:each="itemDetails: ${OrderDetail}" th:if="${OrderDetail.getOrder().getId() == item.id}" >
+                                                    <td class="product-quantity" th:text="${itemDetails.getAgriculturalProduce().getName()}"></td>
+                                                    <td class="product-total"><img th:src="${'data:image/jpeg;base64,'+ itemDetails.getAgriculturalProduce().getImage()}" style="width:100px" alt=""></td>
+                                                    <td class="product-quantity" th:text="${'$'+itemDetails.price}"></td>
+                                                    <td class="product-total" th:text="${itemDetails.quantity}"></td>
+                                                </tr>
+                                            </tbody>  
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Đóng
+                                            </button>
+                                        </div>
+                                    </form>
+                                </form>
+                            </div>
+                        </div>
+                          </div>    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

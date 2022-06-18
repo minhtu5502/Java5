@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <div th:fragment="content" class="card-body container bg-white">
+        <h2 class="card-title bg-info text-white text-center p-3">Thêm Nông Sản</h2>
+
+        <form th:action="${BASEURL + CREATE}" class="row" method="post" enctype="multipart/form-data">
+
+            <div class="form-outline mb-4">
+                <input type="text" id="name" name="name" class="form-control" />
+                <label class="form-label" for="name">Tên</label>
+            </div>
+
+            <!-- Text input -->
+            <div class="form-outline mb-4">
+                <input type="text" id="form6Example3" class="form-control" />
+                <label class="form-label" for="form6Example3">Company name</label>
+            </div>
+
+            <!-- Text input -->
+            <div class="form-outline mb-4">
+                <input type="number" id="weight" class="form-control" />
+                <label class="form-label" for="weight">Trọng Lượng</label>
+            </div>
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <input type="email" id="supplier" class="form-control" />
+                <label class="form-label" for="supplier">Xuất xứ</label>
+            </div>
+
+            <!-- Message input -->
+            <div class="form-outline mb-4">
+                <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+                <label class="form-label" for="form6Example7">Giá Trị Dinh Dưỡng</label>
+            </div>
+
+            <!-- Checkbox -->
+            <div class="form-check d-flex justify-content-center mb-4">
+                <input class="form-check-input me-2" type="checkbox" value="" id="form6Example8" checked />
+                <label class="form-check-label" for="form6Example8"> Create an account? </label>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">Place order</button>
+            <button class="btn btn-primary mr-2">Save</button>
+            <button type="reset" class="btn btn-light">Reset</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

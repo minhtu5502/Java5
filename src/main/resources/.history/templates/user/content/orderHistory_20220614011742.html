@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="cart-table-wrap">
+        <table class="cart-table">
+            <thead class="cart-table-head">
+                <tr class="table-head-row">
+                    <th class="product-name">Mã</th>
+                    <th class="product-price">Ngày Mua</th>
+                    <th class="product-quantity">Tổng Tiền</th>
+                    <th class="product-total">Trạng Thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-body-row" th:each="item: ${Order}" >
+                    <td class="product-quantity" th:text="${item.id}"></td>
+                    <td class="product-quantity" th:text="${item.created}"></td>
+                    <td class="product-total" th:text="${item.totalPrice}"></td>
+                    <td class="product-total" th:text="${item.statusOrder}"></td>
+                    <td class="product-price" >btnChi tiết  <div th:if="${item.status==StatusDone}"><hr><button class="boxed-btn cart-buttons" >Đã Nhận Được Hàng</button></div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

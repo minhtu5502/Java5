@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.utraq.net.nz/thymeleaf/layout" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="cart-table-wrap p-5" th:fragment="page">
+        <h2>Lịch Sử Mua Hàng</h2>
+        <table class="cart-table">
+            <thead class="cart-table-head">
+                <tr class="table-head-row">
+                    <th class="product-name">Mã</th>
+                    <th class="product-price">Ngày Mua</th>
+                    <th class="product-quantity">Tổng Tiền</th>
+                    <th class="product-total">Trạng Thái</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-body-row" th:each="item: ${Order}">
+                    <td class="product-quantity" th:text="${item.id}"></td>
+                    <td class="product-quantity" th:text="${item.created}"></td>
+                    <td class="product-total" th:text="${item.totalPrice}"></td>
+                    <td class="product-total" th:text="${item.getStatusOrder().getValue()}"></td>
+                    <td class="product-price"><button class="btn boxed-btn cart-buttons" data-toggle="modal"
+                            th:attr="data-target='#modalEdit'+${item.id}">Chi tiết</button>
+                        
+                    </td>
+                    <td th:if="${item.statusOrder==StatusDone}">
+                        <a class="boxed-btn cart-buttons" >Đã Nhận Được Hàng</a>
+                    </td>
+
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

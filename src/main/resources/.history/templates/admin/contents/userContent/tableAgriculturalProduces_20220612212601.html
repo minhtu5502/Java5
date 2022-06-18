@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+<!--      layout:decorate="~{/admin/layout/layoutAdmin}">-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div th:fragment="content">
+        <form th:action="${BASEURL}">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Quản Lý Nông Sản</h4>
+                        <div class="mt-5 mb-3 row">
+                            <div class=" d-flex justify-content-end">
+                                <button th:formaction="${BASEURL + ADD}" class="btn btn-success btn-fw mr-4">Thêm
+                                </button>
+                                <button th:formaction="${DELETE_ALL}" class="btn btn-danger btn-fw">Ngừng Bán
+                                </button>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped text-center">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="form-check form-check-primary d-flex justify-content-center">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input" id="select-all">
+                                                </label>
+                                            </div>
+                                        </th>
+                                        <th>Id</th>
+                                        <th>Tên</th>
+                                        <th>Tài Khoản</th>
+                                        <th>Mật Khẩu</th>
+                                        <th>Email</th>
+                                        <th>Số Lượng</th>
+                                        <th>Giá</th>
+                                        <th>Ngày Tạo</th>
+                                        <th colspan="2">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="item: ${page.getContent()}">
+                                        <td>
+                                            <div class="form-check form-check-primary d-flex justify-content-center">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input" name="checkedID"
+                                                        th:value="${item.id}">
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td th:text="${item.id}"></td>
+                                        <td th:text="${item.name}"></td>
+                                        <td>
+                                            <img th:src="${'data:image/jpeg;base64,'+ item.image}" style="width: 100px;"
+                                                class="img-fluid">
+                                        </td>
+                                        <td><span th:text="${item.weight}"></span> <span>Kg</span></td>
+                                        <td th:text="${item.getSupplier.getName()}"></td>
+                                        <td th:text="${item.nutrition}"></td>
+                                        <td th:text="${item.quantity}"></td>
+                                        <td><span th:text="${item.price}"></span> <span>VNĐ</span></td>
+                                        <td th:text="${item.createdDate}"></td>
+                                        <!-- <td th:text="${{#dates.format(item.createdDate, 'dd-MMM-yyyy')}"></td> -->
+                                        <td>
+                                            <button th:formaction="${BASEURL+BLOCK + item.id}"
+                                                class="btn btn-outline-danger">Ngừng bán
+                                            </button>
+                                        </td>
+                                         
+                                        <td>
+                                            <button th:formaction="${BASEURL+EDIT + item.id}"
+                                                class="btn btn-outline-success">Sửa
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="m-2 col-1 ml-3">
+                            <select class="form-select" aria-label="Default select example" id="maxRecord">
+                                <option th:value="${5}">5</option>
+                                <option th:value="${10}">10</option>
+                                <option th:value="${20}">20</option>
+                                <option th:value="${30}">30</option>
+                                <option th:value="${40}">40</option>
+                            </select>
+                        </div>
+                        <nav class="navigation example col-8 offset-2 mt-3">
+                            <ul class="pagination justify-content-end mr-3" th:if="${page.getTotalPages() > 0} ">
+                                <li class="page-item ">
+                                    <a class="page-link " th:if="${currentPage > 1}"
+                                        th:href="@{ ${BASEURL + PAGE} + ${currentPage - 1}}">Previous
+                                    </a>
+                                </li>
+
+                                <span th:each="i: ${#numbers.sequence(1, page.getTotalPages())}">
+                                    <li class="page-item ">
+                                        <a class="page-link" th:if="${currentPage != i}"
+                                            th:href="@{ ${BASEURL + PAGE} + ${i}}" th:text="${i}"></a>
+                                    </li>
+
+                                    <li class="page-item active" th:unless="${currentPage != i}"><a
+                                            class="page-link">[[${i}]]</a>
+                                    </li>
+                                </span>
+
+                                <li class="page-item">
+                                    <a class="page-link" th:if="${currentPage < page.getTotalPages()}"
+                                        th:href="@{ ${BASEURL + PAGE} + ${currentPage + 1}}">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+        </form>
+        <!-- /.container-fluid -->
+    </div>
+</body>
+
+</html>

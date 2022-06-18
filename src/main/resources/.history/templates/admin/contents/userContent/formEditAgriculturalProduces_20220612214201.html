@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <div th:fragment="content" class="card-body container bg-white">
+        <h2 class="card-title bg-info text-white text-center p-3">Sửa Người Dùng</h2>
+
+        <form th:action="${BASEURL + CREATE}" class="row" method="post" enctype="multipart/form-data">
+
+            <input name="id" type="text" class="form-control" id="exampleInputName1" placeholder="Name" th:value="user.id"> 
+            <div class="form-group col-6">
+                <label for="exampleInputName1">Tên:</label>
+                <input name="fullname" type="text" class="form-control" id="exampleInputName1" placeholder="Name" th:value="user.fullname"> 
+            </div>
+            <div class="form-group col-6">
+                <label for="exampleInputEmail3">Tài khoản:</label>
+                <input name="username" type="text" class="form-control" id="exampleInputEmail3" placeholder="User name" th:value="user.username">
+            </div>
+            <div class="form-group col-6">
+                <label for="exampleSelectSupplier">Mật khẩu:</label>
+                <input name="password" type="t" class="form-control" id="exampleInputEmail3" placeholder="Password" th:value="user.password">
+            </div>
+            <div class="form-group col-6">
+                <label for="exampleInputPassword5">Email:</label>
+                <input name="email" type="email" class="form-control" id="exampleInputPassword5" placeholder="Email" th:value="user.email">
+            </div>
+            <div class="form-group col-6">
+                <label for="exampleInputPassword4">Số điện thoại:</label>
+                <input name="price" type="text" class="form-control" id="exampleInputPassword4" placeholder="Price" th:value="user.">
+            </div>
+            <div class="form-group col-6">
+                <label for="exampleSelectType">Giới tính:</label>
+                <select name="type" class="form-control" id="exampleSelectType">
+                    <option th:each="gender: ${T(assignment.assignment_java5.model.typeEnum.Gender).values()}"
+                            th:text="${gender}" th:value="${gender}"></option>
+                </select>
+            </div>
+            <div class="form-group col-6">
+                <label for="exampleSelectStatus">Vai trò:</label>
+                <select name="status" class="form-control" id="exampleSelectStatus">
+                    <option th:each="role: ${T(assignment.assignment_java5.model.typeEnum.Role).values()}"
+                            th:text="${role}" th:value="${role}"></option>
+                </select>
+            </div>
+            <button class="btn btn-primary mr-2" type="submit">Save</button>
+            <button type="reset" class="btn btn-light">Reset</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

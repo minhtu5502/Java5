@@ -1,0 +1,82 @@
+ <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <div th:fragment="content" class="card-body container bg-white">
+        <h3 class="card-title bg-info text-white text-center p-3">Thêm Nông Sản</h3>
+
+        <form th:action="${BASEURL + CREATE}" class="row" method="post" enctype="multipart/form-data" name = "formCreateAgriculturalProduces">
+
+            <div class="form-group col-6">
+                <label for="exampleInputName1">Tên:</label>
+                <input name="name" type="text" class="form-control" id="exampleInputName1" placeholder="Name" required>
+                <p ng-hide="frmRegister.username.$untouched" class="ml-5">
+                    <small ng-show="formCreateAgriculturalProduces.username.$error.required" class="form-text text-danger">Vui lòng
+                        nhập tên tài khoản</small>
+                    <small ng-show="formCreateAgriculturalProduces.username.$error.minlength" class="form-text text-danger">Tên tài
+                        khoản phải hơn 6 kí tự</small>
+                </p>
+            </div>
+            <div class="form-group col-6">
+                <label>File upload:</label>
+                <div class="input-group mb-3">
+                    <div class="custom-file">
+                        <input name="image" type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" >
+                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-6">
+                <label for="exampleInputEmail3">Trọng Lượng:</label>
+                <input name="weight" type="number" class="form-control" id="exampleInputEmail3" placeholder="Weight" required>
+            </div>
+            <div class="form-group col-6">
+                <label for="exampleSelectSupplier">Xuất Xứ:</label>
+                <select name="supplier" class="form-control" id="exampleSelectSupplier">
+                    <option th:each="supplier: ${Supplier}"
+                            th:text="${supplier.name}" th:value="${supplier.id}"></option>
+                </select>
+            </div>
+            <div class="form-group col-6">
+                <label for="exampleInputPassword5">Số Lượng:</label>
+                <input name="quantity" type="number" class="form-control" id="exampleInputPassword5"
+                       placeholder="Quantity" required>
+            </div>
+            <div class="form-group col-6">
+                <label for="exampleInputPassword4">Giá:</label>
+                <input name="price" type="text" class="form-control" id="exampleInputPassword4"
+                       placeholder="Price" required>
+            </div>
+            <div class="form-group col-6">
+                <label for="exampleSelectType">Loại:</label>
+                <select name="type" class="form-control" id="exampleSelectType">
+                    <option th:each="type: ${T(assignment.assignment_java5.model.typeEnum.TypeAgriculturalProduce).values()}"
+                            th:text="${type}" th:value="${type}"></option>
+                </select>
+            </div>
+            <div class="form-group col-6">
+                <label for="exampleSelectStatus">Trạng thái:</label>
+                <select name="status" class="form-control" id="exampleSelectStatus">
+                    <option th:each="status: ${T(assignment.assignment_java5.model.typeEnum.StatusAgriculturalProduce).values()}"
+                            th:text="${status.value}" th:value="${status}"></option>
+                </select>
+            </div>
+
+            <div class="form-group col-12">
+                <label for="exampleInputNutrition">Giá Trị Dinh Dưỡng</label>
+                <textarea  name="nutrition" type="text" class="form-control" id="exampleInputNutrition" placeholder="Nutrition"></textarea >
+            </div>
+
+            <button class="btn btn-primary mr-2" type="submit">Save</button>
+            <button type="reset" class="btn btn-light">Reset</button>
+        </form>
+    </div>
+
+</body>
+
+</html>
