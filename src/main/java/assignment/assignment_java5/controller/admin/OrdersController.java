@@ -26,8 +26,13 @@ public class OrdersController {
     @GetMapping("/{id}")
     public String orderDetailHistory(ModelMap model, @PathVariable Integer id){
         List<OrderDetails> orderDetailList = orderDetailsService.getById(id);
+        int total = 0;
+        for(OrderDetails o : orderDetailList) {
+            total += o.getQuantity() * Integer.parseInt(String.valueOf(o.getPrice()));
+        };
         model.addAttribute("view","/admin/contents/orderContent/orderDetailTable");
         model.addAttribute("OrderDetail",orderDetailList);
+        model.addAttribute("total",total);
         return "admin/layout";
     }
     @GetMapping("/Confirm")

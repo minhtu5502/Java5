@@ -61,7 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                // Trang chỉ dành cho ADMIN
 //                .authorizeRequests().antMatchers("/Admin/*").hasAuthority("Admin")
 //                .and()
-                .authorizeRequests().antMatchers("/", "/Shop/Home","/Shop/SignUp","/admin/**","/login/**","/user/**")
+                .authorizeRequests().antMatchers("/Shop/AgriculturalProduce/**", "/Shop/Home","/Shop/SignUp","/admin/**","/login/**","/user/**")
                 .permitAll().anyRequest().authenticated() // Tất cả các request khác đều cần phải xác thực mới được truy cập
                  //Người dùng vào trang sai vai trò,
                 // Ngoại lệ AccessDeniedException sẽ ném ra.

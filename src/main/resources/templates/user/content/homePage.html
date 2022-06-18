@@ -40,7 +40,7 @@
                             </div>
                             <h3 th:text="${item.name}"></h3>
                             <p class=""><span th:text="${item.weight}"></span><span>Kg </span></p>
-                            <p class="product-price " th:text="${item.price}+' Vnđ'"></p>
+                            <p class="product-price " th:text="${#strings.replace(#numbers.formatCurrency(item.price), '', '') }"></p>
                             <a th:href="@{'/Shop/AddToCart/'+${item.id}}" class="cart-btn"><i
                                     class="fas fa-shopping-cart"></i> Add to Cart</a>
                         </div>

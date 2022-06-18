@@ -38,11 +38,20 @@
  
                                         <td class="product-quantity" th:text="${item.getAgriculturalProduce().getName()}"></td>
                                         <td class="product-quantity" ><img th:src="${'data:image/jpeg;base64,'+ item.getAgriculturalProduce().getImage()}" width="100px" alt=""></td>
-                                        <td class="product-total" th:text="${item.price + '$'}"></td>
+                                        <td class="product-total" th:text="${#strings.replace(#numbers.formatCurrency(item.price), '', '')}"></td>
                                         <td class="product-total" th:text="${item.quantity}"></td>
                                     </tr>
 
                                 </tbody>
+                                <tfoot>
+
+                                <td class="product-quantity text-success" colspan="2"><h2>Tổng tiền</h2></td>
+                                <td class="product-total text-success" >
+                                    <h2 th:text="${#strings.replace(#numbers.formatCurrency(total), '', '')}"></h2>
+                                </td>
+                                <td class="product-total"></td>
+
+                                </tfoot>
                             </table>
                         </div>
                     </div>

@@ -41,7 +41,7 @@
                                 <td class="product-quantity" th:text="${item.id}"></td>
                                 <td class="product-quantity" th:text="${item.getUser().getFullName()}"></td>
                                 <td class="product-quantity" th:text="${item.created}"></td>
-                                <td class="product-total" th:text="${item.totalPrice + '$'}"></td>
+                                <td class="product-total" th:text="${#strings.replace(#numbers.formatCurrency(item.totalPrice), '', '')}"></td>
                                 <td class="product-total" th:text="${item.getStatusOrder().getValue()}"></td>
                                 <td class="product-price"><a class="btn boxed-btn cart-buttons"
                                                              th:href="'/Admin/Manage/Order/'+${item.id}">Chi tiết</a>

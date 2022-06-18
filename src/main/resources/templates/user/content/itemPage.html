@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <main class="mt-5 pt-4" th:fragment="page">
+  <main class="mt-5 pt-4 mb-5" th:fragment="page">
     <div class="single-product mb-150">
       <div class="container">
         <div class="row">
@@ -22,7 +22,7 @@
             <div class="single-product-content">
               <h3 th:text="${item.name}"></h3>
               <p>  <span class="" th:text="${item.weight}"></span> <span>Kg</span></p>
-              <p class=""><p class="product-price " th:text="${item.price}+' Vnđ'">></p></p>
+              <p class=""><p class="product-price " th:text="${#strings.replace(#numbers.formatCurrency(item.price), '', '') }"></p></p>
               <p class="single-product-pricing"><span>Số lượng: </span> <span class="" th:text="${item.quantity}"></span> </p>
               <hr>
               <p>Giá trị dinh dưỡng:</p>
@@ -40,29 +40,29 @@
       </div>
     </div>
     
-    <div class="more-products mb-150">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 offset-lg-2 text-center">
-            <div class="section-title">	
-              <h3><span class="orange-text">Related</span> Products</h3>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-6 text-center">
-            <div class="single-product-item">
-              <div class="product-image">
-                <a th:href="@{'/Shop/AgriculturalProduce/'+${item.id}}"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
-              </div>
-              <h3>Strawberry</h3>
-              <p class="product-price"><span>Per Kg</span> 85$ </p>
-              <a th:href="@{'/Shop/AddToCart/'+${item.id}}"  class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<!--    <div class="more-products mb-150">-->
+<!--      <div class="container">-->
+<!--        <div class="row">-->
+<!--          <div class="col-lg-8 offset-lg-2 text-center">-->
+<!--            <div class="section-title">	-->
+<!--              <h3><span class="orange-text">Related</span> Products</h3>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--          <div class="col-lg-4 col-md-6 text-center">-->
+<!--            <div class="single-product-item">-->
+<!--              <div class="product-image">-->
+<!--                <a th:href="@{'/Shop/AgriculturalProduce/'+${item.id}}"><img src="assets/img/products/product-img-1.jpg" alt=""></a>-->
+<!--              </div>-->
+<!--              <h3>Strawberry</h3>-->
+<!--              <p class="product-price"><span>Per Kg</span> 85$ </p>-->
+<!--              <a th:href="@{'/Shop/AddToCart/'+${item.id}}"  class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
   </main>
   <!--Main layout-->
 </body>

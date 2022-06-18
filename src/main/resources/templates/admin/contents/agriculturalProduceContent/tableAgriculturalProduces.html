@@ -68,7 +68,7 @@
                                         <td><span th:text="${item.weight}"></span> <span>Kg</span></td>
                                         <td th:text="${item.getSupplier.getName()}"></td>
                                         <td th:text="${item.quantity}"></td>
-                                        <td><span th:text="${item.price}"></span> <span>VNĐ</span></td>
+                                        <td><span th:text="${#strings.replace(#numbers.formatCurrency(item.price), '', '')}"></span></td>
                                         <td th:text="${item.type}"></td>
                                         <td th:text="${item.createdDate}"></td>
                                         <!-- <td th:text="${{#dates.format(item.createdDate, 'dd-MMM-yyyy')}"></td> -->

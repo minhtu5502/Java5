@@ -1,5 +1,6 @@
 package assignment.assignment_java5.controller.user;
 
+import assignment.assignment_java5.model.CartDetails;
 import assignment.assignment_java5.model.OrderDetails;
 import assignment.assignment_java5.model.Orders;
 import assignment.assignment_java5.model.Users;
@@ -63,8 +64,13 @@ public class OrdesController {
     @GetMapping("/{id}")
     public String orderDetailHistory(ModelMap model, @PathVariable Integer id){
         List<OrderDetails> orderDetailList = orderDetailsService.getById(id);
+        int total = 0;
+        for(OrderDetails o : orderDetailList) {
+            total += o.getQuantity() * Integer.parseInt(String.valueOf(o.getPrice()));
+        };
         model.addAttribute("View","/user/content/orderDetailTable");
         model.addAttribute("OrderDetail",orderDetailList);
+        model.addAttribute("total",total);
         return "user/layout";
     }
 
